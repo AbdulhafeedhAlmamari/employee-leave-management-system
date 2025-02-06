@@ -20,7 +20,7 @@ class EmployeeFactory extends Factory
         return [
             'employee_name' => $this->faker->name,
             'employee_number' => $this->faker->unique()->numerify('EMP#####'),
-            'mobile_number' => $this->faker->phoneNumber,
+            'mobile_number' => $this->faker->numerify('###############'), // make it 15 number
             'address' => $this->faker->address,
             'notes' => $this->faker->sentence,
             'user_id' => User::factory()->create()->id,

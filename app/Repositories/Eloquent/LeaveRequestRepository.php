@@ -15,7 +15,13 @@ class LeaveRequestRepository implements LeaveRequestRepositoryInterface
 
     public function all()
     {
-        return $this->leaveRequest->with('employee', 'leaveType')->get();
+        return $this->leaveRequest
+            ->with(['employee', 'leaveType'])
+            ->whereHas('employee', function ($query) {
+                $query->where('user_id', auth()->user()->id);
+            })
+            ->latest()
+            ->get();
     }
 
     public function create(array $data)
