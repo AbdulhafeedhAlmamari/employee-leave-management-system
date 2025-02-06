@@ -2,6 +2,7 @@
 
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Schema;
 
 return new class extends Migration
@@ -14,9 +15,9 @@ return new class extends Migration
         Schema::create('employees', function (Blueprint $table) {
             $table->id();
             $table->string('employee_name');
-            $table->string('employee_number')->unique();
-            $table->string('mobile_number');
-            $table->text('address')->nullable();
+            $table->char('employee_number', 36)->unique()->nullable();
+            $table->string('mobile_number', 15)->unique();
+            $table->text('address')->required();
             $table->text('notes')->nullable();
             $table->foreignId('user_id')->constrained()->onDelete('cascade');
             $table->timestamps();

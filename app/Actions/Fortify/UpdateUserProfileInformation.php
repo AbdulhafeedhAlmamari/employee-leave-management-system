@@ -21,14 +21,20 @@ class UpdateUserProfileInformation implements UpdatesUserProfileInformation
             'name' => ['required', 'string', 'max:255'],
             'email' => ['required', 'email', 'max:255', Rule::unique('users')->ignore($user->id)],
             'photo' => ['nullable', 'mimes:jpg,jpeg,png', 'max:1024'],
+            // 'employee_name' => ['required', 'string'],
+            // 'mobile_number' => ['required', 'string'],
+            // 'address' => ['required', 'string'],
+            // 'notes' => ['nullable', 'string'],
         ])->validateWithBag('updateProfileInformation');
 
         if (isset($input['photo'])) {
             $user->updateProfilePhoto($input['photo']);
         }
 
-        if ($input['email'] !== $user->email &&
-            $user instanceof MustVerifyEmail) {
+        if (
+            $input['email'] !== $user->email &&
+            $user instanceof MustVerifyEmail
+        ) {
             $this->updateVerifiedUser($user, $input);
         } else {
             $user->forceFill([
@@ -36,6 +42,13 @@ class UpdateUserProfileInformation implements UpdatesUserProfileInformation
                 'email' => $input['email'],
             ])->save();
         }
+
+        // $user->employee->create([
+        //     'employee_name' => $input['employee_name'],
+        //     'mobile_number' => $input['mobile_number'],
+        //     'address' => $input['address'],
+        //     'notes' => $input['notes'] ?? null,
+        // ])->save();
     }
 
     /**
