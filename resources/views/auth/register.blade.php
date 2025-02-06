@@ -1,4 +1,9 @@
 <x-guest-layout>
+    <x-slot name="title">
+        <h2 class="font-semibold text-xl text-gray-800 leading-tight">
+            {{ __('Welcom to Employee Leave Management System') }}
+        </h2>
+    </x-slot>
     <x-authentication-card>
         <x-slot name="logo">
             {{-- icon --}}
@@ -37,8 +42,8 @@
                 {{-- phone number --}}
                 <div class="flex-1">
                     <x-label for="mobile_number" value="{{ __('Phone Number') }}" />
-                    <x-input id="mobile_number" class="mt-1 w-full" type="text" name="mobile_number" :value="old('mobile_number')"
-                        required autofocus autocomplete="mobile_number" />
+                    <x-input id="mobile_number" class="mt-1 w-full" type="text" name="mobile_number"
+                        :value="old('mobile_number')" required autofocus autocomplete="mobile_number" />
                 </div>
             </div>
 
