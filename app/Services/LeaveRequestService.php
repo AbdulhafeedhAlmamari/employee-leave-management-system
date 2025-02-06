@@ -91,4 +91,5 @@ class LeaveRequestService
     {
         return $this->leaveRequestRepo->all();
     }
+    
 }

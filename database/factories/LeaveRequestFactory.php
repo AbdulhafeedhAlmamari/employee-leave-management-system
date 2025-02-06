@@ -21,8 +21,8 @@ class LeaveRequestFactory extends Factory
         return [
             'employee_id' => Employee::factory()->create()->id,
             'leave_type_id' => LeaveType::factory()->create()->id,
-            'from_date' => '2025-02-10',
-            'to_date' => '2025-02-15',
+            'from_date' => $this->faker->dateTimeBetween('-1 year', 'now'),
+            'to_date' => $this->faker->dateTimeBetween('now', '+1 year'),
             'reason' => 'Personal',
             'notes' => $this->faker->sentence,
         ];

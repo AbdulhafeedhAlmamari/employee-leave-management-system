@@ -59,6 +59,17 @@
             </header>
         @endif
 
+        {{-- session message --}}
+        @if (session('success'))
+            <div class="mt-10 flex justify-center">
+                <div id="success-alert"
+                    class="bg-green-100 border border-green-400 text-green-700 px-4 py-3 rounded relative"
+                    role="alert">
+                    <span class="block sm:inline">{{ session('success') }}</span>
+                </div>
+            </div>
+        @endif
+
         <!-- Page Content -->
         <main>
             {{ $slot }}
@@ -66,9 +77,14 @@
 
     </div>
 
+    {{-- data table in js --}}
     <script>
         $(document).ready(function() {
             $('#tableID').DataTable({
+                columnDefs: [{
+                    target: 2,
+                    visible: false
+                }],
                 dom: 'Bfrtip',
                 buttons: [{
                     extend: 'pdf',
@@ -80,6 +96,19 @@
                     }
                 }, ]
             });
+        });
+    </script>
+
+
+
+    {{-- hide alert --}}
+    <script>
+        setTimeout(function() {
+            document.getElementById('success-alert').style.display = 'none';
+        }, 2000);
+
+        document.getElementById('success-alert').querySelector('svg').addEventListener('click', function() {
+            document.getElementById('success-alert').style.display = 'none';
         });
     </script>
 
