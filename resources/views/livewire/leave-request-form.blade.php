@@ -1,4 +1,4 @@
-<div class="max-w-screen-md mx-auto py-10 sm:px-6 lg:px-8 bg-white mt-10">
+<div class="max-w-screen-md mx-auto py-10 sm:px-6 lg:px-8 bg-white mt-10 rounded">
     @if (session()->has('message'))
         <div x-data="{ showMessage: true }" x-init="setTimeout(() => showMessage = false, 3000)" x-show="showMessage"
             class="bg-green-100 border border-green-400 text-green-700 px-4 py-3 rounded mb-4">
@@ -14,8 +14,7 @@
                 class="mt-1 w-full border-gray-300 focus:border-indigo-500 focus:ring-indigo-500 rounded-md shadow-sm"
                 wire:model="employeeId" required>
                 @foreach ($employees as $employee)
-                    <option value="{{ $employee->id }}"
-                        {{ $employee->id == $employeeId ? 'selected' : 'disabled' }}>
+                    <option value="{{ $employee->id }}" {{ $employee->id == $employeeId ? 'selected' : 'disabled' }}>
                         {{ $employee->employee_name }}
                     </option>
                 @endforeach

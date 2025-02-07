@@ -6,4 +6,5 @@ use App\Repositories\Contracts\BaseRepositoryInterface;
 
 interface LeaveRequestRepositoryInterface extends BaseRepositoryInterface
 {
+    public function getLeaveSummaryReport();
 }
