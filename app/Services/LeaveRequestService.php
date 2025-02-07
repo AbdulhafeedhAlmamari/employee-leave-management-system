@@ -96,22 +96,10 @@ class LeaveRequestService
     public function generateLeaveSummaryReport()
     {
         $leaveSummaries = $this->leaveRequestRepo->getLeaveSummaryReport();
-        // $leaveSummaries = [
-        //     [
-        //         'employee_name' => 'John Doe',
-        //         'employee_number' => 'EMP123',
-        //         'mobile_number' => '1234567890',
-        //         'total_leave_requests' => 5,
-        //         'last_leave_date' => now()->toDateString(),
-        //         'last_leave_type' => 'Sick Leave',
-        //     ]
-        // ];
         $pdf = pdf::loadView('leave-requests.leave_summary', compact('leaveSummaries'))->setPaper('a4')->setOption([
             'temdir' => public_path(),
             'chroot' => public_path(),
         ]);
-        // $details =['title' => 'test'];
-        // $pdf = PDF::loadView('leave_requests.leave_summary', $details);
         return $pdf->download('leave_summary_report.pdf');
     }
 }

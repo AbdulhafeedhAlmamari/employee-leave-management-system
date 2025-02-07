@@ -29,5 +29,4 @@ Route::middleware([
     Route::get('/leave-report', [LeaveRequestController::class, 'generateLeaveReport'])->name('leave.report');
 });
 
-// require_once __DIR__ . '/jetstream.php';
 require_once __DIR__ . '/fortify.php';

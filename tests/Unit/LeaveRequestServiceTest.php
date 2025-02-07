@@ -7,6 +7,7 @@ use Illuminate\Foundation\Testing\RefreshDatabase;
 use App\Models\LeaveRequest;
 use App\Models\Employee;
 use App\Models\LeaveType;
+use App\Models\User;
 use App\Repositories\Eloquent\EmployeeRepository;
 use App\Repositories\Eloquent\LeaveRequestRepository;
 use App\Repositories\Eloquent\LeaveTypeRepository;
@@ -31,7 +32,9 @@ class LeaveRequestServiceTest extends TestCase
     }
     public function testCreateLeaveRequest()
     {
-        $employee = Employee::factory()->create();
+        $user = User::factory()->create();
+        $this->actingAs($user);
+        $employee = Employee::factory()->create(['user_id' => $user->id]);
         $leaveType = LeaveType::factory()->create();
 
         $data = [
@@ -58,7 +61,9 @@ class LeaveRequestServiceTest extends TestCase
 
     public function testUpdateLeaveRequest()
     {
-        $employee = Employee::factory()->create();
+        $user = User::factory()->create();
+        $this->actingAs($user);
+        $employee = Employee::factory()->create(['user_id' => $user->id]);
         $leaveType = LeaveType::factory()->create();
 
         $leaveRequest = LeaveRequest::factory()->create();

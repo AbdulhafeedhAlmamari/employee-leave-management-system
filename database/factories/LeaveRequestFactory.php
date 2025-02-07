@@ -23,7 +23,7 @@ class LeaveRequestFactory extends Factory
             'leave_type_id' => LeaveType::factory()->create()->id,
             'from_date' => $this->faker->dateTimeBetween('-1 year', 'now'),
             'to_date' => $this->faker->dateTimeBetween('now', '+1 year'),
-            'reason' => 'Personal',
+            'reason' => $this->faker->sentence,
             'notes' => $this->faker->sentence,
         ];
     }
