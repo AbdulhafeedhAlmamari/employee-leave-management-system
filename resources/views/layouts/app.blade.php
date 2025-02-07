@@ -82,19 +82,9 @@
         $(document).ready(function() {
             $('#tableID').DataTable({
                 columnDefs: [{
-                    target: 2,
+                    target: 1,
                     visible: false
                 }],
-                dom: 'Bfrtip',
-                buttons: [{
-                    extend: 'pdf',
-                    text: 'Save current page as PDF',
-                    exportOptions: {
-                        modifier: {
-                            page: 'current'
-                        }
-                    }
-                }, ]
             });
         });
     </script>

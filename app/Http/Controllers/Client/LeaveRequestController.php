@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Client;
 use App\Http\Controllers\Controller;
 use App\Services\LeaveRequestService;
 use Illuminate\Http\Request;
+use Barryvdh\DomPDF\Facade\Pdf;
 
 class LeaveRequestController extends Controller
 {
@@ -85,6 +86,16 @@ class LeaveRequestController extends Controller
             return view('leave_requests.show', compact('leaveRequest'));
         } catch (\Exception $e) {
             return back()->withErrors(['error' => $e->getMessage()]);
+        }
+    }
+
+
+    public function generateLeaveReport()
+    {
+        try {
+            return $this->leaveRequestService->generateLeaveSummaryReport();
+        } catch (\Exception $e) {
+            return redirect()->back()->with('error', 'Error generating report: ' . $e->getMessage());
         }
     }
 }

@@ -1,4 +1,20 @@
 <x-app-layout>
+    <style>
+        select {
+            width: 70px;
+        }
+
+        .button-container {
+            display: flex;
+            justify-content: flex-end;
+            align-items: center;
+        }
+
+        .fa-file-pdf {
+            font-size: 30px;
+        }
+    </style>
+
     <x-slot name="header">
         <h2 class="font-semibold text-xl text-gray-800 leading-tight">
             {{ __('Leave Requests') }}
@@ -8,14 +24,24 @@
     <div class="py-12">
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8 bg-white p-10 overflow-hidden shadow-xl sm:rounded-lg">
 
-            {{-- add leave request --}}
-            <div class="w-full text-right mb-10">
-                <a href="{{ route('leave_requests.create') }}">
-                    <button
-                        class="inline-flex items-center px-4 py-2 bg-gray-800 border border-transparent rounded-md font-semibold text-xs text-white uppercase tracking-widest hover:bg-gray-700 focus:bg-gray-700 active:bg-gray-900 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 disabled:opacity-50 transition ease-in-out duration-150">
-                        Add Leave Request
-                    </button>
-                </a>
+            <div class="button-container mb-5">
+                {{-- generate report --}}
+                <div class="">
+                    <a href="{{ route('leave.report') }}">
+                        <i class="fa-solid fa-file-pdf hover:text-gray-600"></i>
+                    </a>
+                </div>
+
+                {{-- add leave request --}}
+                <div class="ml-5">
+                    <a href="{{ route('leave_requests.create') }}">
+                        <button
+                            class="inline-flex items-center px-4 py-2 bg-gray-800 border border-transparent rounded-md font-semibold text-xs text-white uppercase tracking-widest hover:bg-gray-700 focus:bg-gray-700 active:bg-gray-900 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 disabled:opacity-50 transition ease-in-out duration-150">
+                            Add Leave Request
+                        </button>
+                    </a>
+                </div>
+
             </div>
 
             <table id="tableID" class="" style="width:100%">
